@@ -223,22 +223,26 @@ export default function NotesScreen() {
       />
 
       <Snackbar
-			visible={snack.visible}
-			onDismiss={() => setSnack({ visible: false, msg: '', action: null })}
-			action={{
-				label: snack.action === 'UNDO' ? 'Undo' : '',
+		visible={snack.visible}
+		onDismiss={() => setSnack({ visible: false, msg: '', action: null })}
+		action={
+			snack.action === 'UNDO'
+			? {
+				label: 'Undo',
 				onPress: undoDelete,
-				textColor: '#ffeb3b', // bright yellow like Gmail
-			}}
+				textColor: '#1565C0', // 🔵 primary blue works in both themes
+				}
+			: undefined
+		}
+		duration={4000}
+		style={{
+			marginBottom: 16,
+			borderRadius: 12,
+		}}
+>
+  {snack.msg}
+</Snackbar>
 
-			duration={4000}
-			style={{
-				marginBottom: 16,
-				borderRadius: 12,
-			}}
-			>
-			{snack.msg}
-	</Snackbar>
 
     </Animated.View>
   );
